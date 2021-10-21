@@ -14,24 +14,36 @@ metodi d'istanza che abbiamo visto stamattina e create un file index.php in cui:
         public $voto;
         public $descrizione;
         public $eta;
+        public $adulto;
 
-        function __construct($_nome, $_durata, $_voto, $_desrizione, $_eta)
+        function __construct($_nome, $_durata, $_voto, $_desrizione, $_eta, $_adulto)
         {
             $this->nome = $_nome;
             $this->durata = $_durata;
             $this->voto = $_voto;
             $this->descrizione = $_desrizione;
             $this->eta = $_eta;
+            $this->adulto = $_adulto;
+            
+        }
+
+        public function setAlert() {
+            if($this->adulto) {
+                return 'Non idoneo ai minorenni';
+            }
+            return 'Idoneo ai minorenni';
         }
     }
 
-    $superman = new Movie('Superman', '1:30:00', '8', 'Superman è un bel film ...' , '+18');
+    $superman = new Movie('Superman', '1:30:00', '8', 'Superman è un bel film ...' , '+12', false);
 
     var_dump($superman);
+    var_dump($superman->setAlert());
 
-    $batman = new Movie('Batman', '1:50:00', '8.5', 'Batman è basato su ...' , '+18');
+    $batman = new Movie('Batman', '1:50:00', '8.5', 'Batman è basato su ...' , +'18', true);
 
     var_dump($batman);
+    var_dump($batman->setAlert());
 
 
 ?>
